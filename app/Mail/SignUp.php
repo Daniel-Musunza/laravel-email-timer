@@ -29,9 +29,9 @@ class SignUp extends Mailable
      */
     public function build()
     {
-        return $this->markdown('SignUpView');
-        // return $this->from('musunzafestus2019@gmail.com')->attach('/path/to/file')->cc($moreUsers)->view('SignUpView');
-    }
+        return $this->from('musunzafestus2019@gmail.com')
+                    ->markdown('SignUpView');
+    }    
 
     public function envelope(): Envelope
     {
