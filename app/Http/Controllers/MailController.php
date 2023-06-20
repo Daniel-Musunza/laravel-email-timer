@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SignUp;
@@ -13,10 +13,12 @@ class MailController extends Controller
     //     Mail::to('dannyfesto1@gmail.com')->send(new SignUp($name));
     //     return view('welcome');
 
+    // $setTime = $_POST['time'];
+    // $setDate = $_POST['date'];
 
-        $setTime = $_GET['time'];
-        $setDate = $_GET['date'];
-    
+    $setTime ="00:00";
+    $setDate = "01/01/2023";
+
         // Create a new DateTime object for the user-set time and date
         $customTime = new DateTime($setDate . ' ' . $setTime);
     
