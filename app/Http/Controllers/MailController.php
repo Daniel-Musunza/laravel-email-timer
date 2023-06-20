@@ -1,40 +1,37 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SignUp;
+
 class MailController extends Controller
 {
-    //
-    public function sendMail() {
-    // $name ="Mr Three Commas";
-    //     Mail::to('dannyfesto1@gmail.com')->send(new SignUp($name));
-    //     return view('welcome');
-
-    // $setTime = $_POST['time'];
-    // $setDate = $_POST['date'];
-
-    $setTime ="00:00";
-    $setDate = "01/01/2023";
-
+    public function sendMail()
+    {
+        $setTime = "18:04";
+        $reminderTime = "15:42";
+        $setDate = "20/06/2023";
+    
+        // Convert date format from "d/m/Y" to "Y-m-d"
+        $formattedDate = DateTime::createFromFormat('d/m/Y', $setDate)->format('Y-m-d');
+    
         // Create a new DateTime object for the user-set time and date
-        $customTime = new DateTime($setDate . ' ' . $setTime);
+        $customTime = new DateTime($formattedDate . ' ' . $setTime);
     
         // Calculate the remaining time
         $currentTime = new DateTime();
         $remainingTime = $customTime->getTimestamp() - $currentTime->getTimestamp();
     
-        // Check if remaining time is 1 hour or 24 hours
-        if ($remainingTime <= 3600 && $remainingTime > 0) {
-            // Send email when remaining time is 1 hour
-            Mail::to('dannyfesto1@gmail.com')->send(new SignUp('1 Hour Remaining'));
-        } else if ($remainingTime <= 86400 && $remainingTime > 0) {
-            // Send email when remaining time is 24 hours
-            Mail::to('dannyfesto1@gmail.com')->send(new SignUp('24 Hours Remaining'));
+        // Check if remaining time is 4 hours and current time matches the desired time
+        if ($remainingTime <= 14400 && $remainingTime > 0) {
+            // Send email when remaining time is 4 hours and current time matches desired time
+            Mail::to('dannyfesto1@gmail.com')->send(new SignUp('You have a meeting on' .' ' .'at ' . $setTime));
         }
     
         return view('welcome');
     }
+    
 }

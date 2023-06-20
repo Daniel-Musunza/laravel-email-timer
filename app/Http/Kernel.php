@@ -6,6 +6,31 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
+
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->call(function () {
+            $currentTime = new DateTime();
+    
+            $setTime = "16:04";
+            $setDate = "20/06/2023";
+    
+            // Convert date format from "d/m/Y" to "Y-m-d"
+            $formattedDate = DateTime::createFromFormat('d/m/Y', $setDate)->format('Y-m-d');
+    
+            // Create a new DateTime object for the user-set time and date
+            $customTime = new DateTime($formattedDate . ' ' . $setTime);
+    
+            // Calculate the remaining time
+            $remainingTime = $customTime->getTimestamp() - $currentTime->getTimestamp();
+    
+            // Check if remaining time is 24 hours and current time matches the desired time
+            if ($remainingTime <= 86400 && $remainingTime > 0 && $currentTime->format('H:i') === $setTime) {
+                // Send email when remaining time is 24 hours and current time matches the desired time
+                Mail::to('dannyfesto1@gmail.com')->send(new SignUp('You have a meeting today'));
+            }
+        })->daily();
+    }
     /**
      * The application's global HTTP middleware stack.
      *

@@ -39,62 +39,62 @@
             0% { opacity: 0; }
             100% { opacity: 1; }
             }
-form{
-    width: 50%;
-    align-items: center;
+            form{
+                width: 50%;
+                align-items: center;
 
-}
-.container{
-    display: flex;
-    flex-direction:column;
-    width: 50%;
-}
-h1{
-    font-size:50px;
-    font-weight: 700;
-}
+            }
+            .container{
+                display: flex;
+                flex-direction:column;
+                width: 50%;
+            }
+            h1{
+                font-size:50px;
+                font-weight: 700;
+            }
 
         </style>
         <script>
-      function updateTime() {
-  var currentTime = new Date();
-  var currentHours = currentTime.getHours();
-  var currentMinutes = currentTime.getMinutes();
-  var currentSeconds = currentTime.getSeconds();
+            function updateTime() {
+                var currentTime = new Date();
+                var currentHours = currentTime.getHours();
+                var currentMinutes = currentTime.getMinutes();
+                var currentSeconds = currentTime.getSeconds();
 
-  // Get user-set time and date
-  var setTime = document.getElementById("set-time").value;
-  var setDate = document.getElementById("set-date").value;
+                // Get user-set time and date
+                var setTime = document.getElementById("set-time").value;
+                var setDate = document.getElementById("set-date").value;
 
-  // Create a new date object for the user-set time and date
-  var customTime = new Date(setDate + "T" + setTime);
+                // Create a new date object for the user-set time and date
+                var customTime = new Date(setDate + "T" + setTime);
 
-  // Calculate the remaining time
-  var remainingTime =0;
-  var remainingHours =0;
-  var remainingMinutes =0;
-  var remainingSeconds =0;
+                // Calculate the remaining time
+                var remainingTime =0;
+                var remainingHours =0;
+                var remainingMinutes =0;
+                var remainingSeconds =0;
 
-  remainingTime = customTime - currentTime;
-  remainingHours = Math.floor(remainingTime / (1000 * 60 * 60));
-  remainingMinutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
- remainingSeconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+                remainingTime = customTime - currentTime;
+                remainingHours = Math.floor(remainingTime / (1000 * 60 * 60));
+                remainingMinutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+                remainingSeconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
 
-  // Format the remaining time
-  remainingHours = (remainingHours < 10 ? "0" : "") + remainingHours;
-  remainingMinutes = (remainingMinutes < 10 ? "0" : "") + remainingMinutes;
-  remainingSeconds = (remainingSeconds < 10 ? "0" : "") + remainingSeconds;
+                // Format the remaining time
+                remainingHours = (remainingHours < 10 ? "0" : "") + remainingHours;
+                remainingMinutes = (remainingMinutes < 10 ? "0" : "") + remainingMinutes;
+                remainingSeconds = (remainingSeconds < 10 ? "0" : "") + remainingSeconds;
 
-  var timeString = currentHours + ":" + currentMinutes + ":" + currentSeconds;
-  var remainingTimeString = remainingHours + ":" + remainingMinutes + ":" + remainingSeconds;
+                var timeString = currentHours + ":" + currentMinutes + ":" + currentSeconds;
+                var remainingTimeString = remainingHours + ":" + remainingMinutes + ":" + remainingSeconds;
 
-  document.getElementById("time").textContent = timeString;
-  document.getElementById("remaining-time").textContent = "Remaining Time: " + remainingTimeString;
-}
+                document.getElementById("time").textContent = timeString;
+                document.getElementById("remaining-time").textContent = "Remaining Time: " + remainingTimeString;
+                }
 
-// Update the time every second
-setInterval(updateTime, 1000);
-</script>
+                // Update the time every second
+                setInterval(updateTime, 1000);
+        </script>
     </head>
     <body class="antialiased">
         <div class="container">
